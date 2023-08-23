@@ -13,19 +13,35 @@ public class PreparationController {
     @Autowired
     private PreparationService preparationService;
 
+    @GetMapping
+    public ResponseEntity<Preparation> getPreparation(Long id){
+        return preparationService.getPreparation(id);
+    }
+
+    @PostMapping
+    public ResponseEntity<Preparation> createPreparation(Preparation preparation){
+        return preparationService.createPreparation(preparation);
+    }
+
+    @PutMapping
+    public ResponseEntity<Preparation> updatePreparation(Long idPreparation, Preparation preparation){
+        return preparationService.updatePreparation(idPreparation, preparation);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<String> deletePreparation(Long idPreparation){
+        return preparationService.deletePreparation(idPreparation);
+    }
+
+
     @PostMapping
     public ResponseEntity<Preparation> addItem(Long idPreparation, Long idItem, Double quantity){
         return preparationService.addItem(idPreparation, idItem, quantity);
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deleteItem(Long id){
-        return preparationService.deleteItem(id);
-    }
-
-    @GetMapping
-    public ResponseEntity<Preparation> getPreparation(Long id){
-        return preparationService.getPreparation();
+    public ResponseEntity<Preparation> deleteItem(Long idPreparation, Long idItem){
+        return preparationService.deleteItem(idPreparation, idItem);
     }
 
 

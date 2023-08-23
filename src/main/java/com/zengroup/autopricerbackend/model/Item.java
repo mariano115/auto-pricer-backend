@@ -16,6 +16,8 @@ public class Item {
     @Column(nullable = false)
     private Double price;
 
+    public Long getId() { return id; }
+
     public String getDescription() {
         return description;
     }

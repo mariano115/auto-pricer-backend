@@ -52,6 +52,6 @@ public class ItemService {
 
     public ResponseEntity<String> deleteItem(Long id) {
         itemRepository.deleteById(id);
-        return ResponseEntity.ok("Item Deleted Succesfully");
+        return ResponseEntity.ok("Item Deleted Successfully");
     }
 }
