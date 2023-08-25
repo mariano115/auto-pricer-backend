@@ -3,6 +3,7 @@ package com.zengroup.autopricerbackend.model;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Preparation")
@@ -18,9 +19,12 @@ public class Preparation {
     @Column
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "preparation_id")
-    private ArrayList<Item> itemList;
+    @OneToMany(mappedBy = "preparation")
+    private List<Item> items;
+
+    @ManyToOne
+    @JoinColumn(name = "commerce_id")
+    private Commerce commerce;
 
     public String getName() {
         return name;
@@ -38,11 +42,11 @@ public class Preparation {
         this.description = description;
     }
 
-    public ArrayList<Item> getItemList() {
-        return itemList;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setItemList(ArrayList<Item> itemList) {
-        this.itemList = itemList;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }

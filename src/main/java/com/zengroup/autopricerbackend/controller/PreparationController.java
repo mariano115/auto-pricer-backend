@@ -18,28 +18,28 @@ public class PreparationController {
         return preparationService.createPreparation(preparation);
     }
 
-    @GetMapping("/preparations/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Preparation> getPreparation(@PathVariable Integer id) {
         return preparationService.getPreparation(id);
     }
 
-    @PutMapping("/preparations/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Preparation> updatePreparation(@PathVariable Integer id, @RequestBody Preparation preparation) {
         return preparationService.updatePreparation(id, preparation);
     }
 
-    @DeleteMapping("/preparations/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePreparation(@PathVariable Integer id) {
         return preparationService.deletePreparation(id);
     }
 
 
-    @PostMapping("/preparations/{id}")
+    @PostMapping("/{id}")
     public ResponseEntity<Preparation> addItem(@PathVariable Integer id, @RequestBody Integer idItem, Double quantity) {
         return preparationService.addItem(id, idItem, quantity);
     }
 
-    @DeleteMapping("/preparation/{id}")
+    @DeleteMapping("/items/{id}")
     public ResponseEntity<Preparation> deleteItem(Integer id, Integer idItem) {
         return preparationService.deleteItem(id, idItem);
     }

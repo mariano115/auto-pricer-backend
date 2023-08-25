@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -37,7 +38,7 @@ public class PreparationService {
                 .orElseThrow(() -> new EntityNotFoundException(String.valueOf(idPreparation)));
         preparationToModify.setName(preparation.getName());
         preparationToModify.setDescription(preparation.getDescription());
-        preparationToModify.setItemList(preparation.getItemList());
+        preparationToModify.setItems(preparation.getItems());
         Preparation preparationModified = preparationRepository.save(preparationToModify);
         return ResponseEntity.ok(preparationModified);
     }
@@ -53,9 +54,9 @@ public class PreparationService {
                 orElseThrow(() -> new EntityNotFoundException(String.valueOf(id)));
         Item itemToAdd = itemService.getItemObjectById(idItem).
                 orElseThrow(() -> new EntityNotFoundException(String.valueOf(idItem)));
-        ArrayList<Item> items = preparation.getItemList();
+        List<Item> items = preparation.getItems();
         items.add(itemToAdd);
-        preparation.setItemList(items);
+        preparation.setItems(items);
         preparationRepository.save(preparation);
         return ResponseEntity.ok(preparation);
         }catch (Exception e) {
@@ -67,9 +68,9 @@ public class PreparationService {
     public ResponseEntity<Preparation> deleteItem(Integer idPreparation, Integer idItem) {
         Preparation preparation = preparationRepository.findById(idPreparation)
                 .orElseThrow(() -> new EntityNotFoundException(String.valueOf(idPreparation)));
-        ArrayList<Item> itemsListToModify = preparation.getItemList().stream()
-                .filter(item -> !Objects.equals(item.getId(), idItem)).collect(Collectors.toCollection(ArrayList::new));
-        preparation.setItemList(itemsListToModify);
+        List<Item> itemsListToModify = preparation.getItems().stream()
+                .filter(item -> !Objects.equals(item.getId(), idItem)).collect(Collectors.toList());
+        preparation.setItems(itemsListToModify);
         return ResponseEntity.ok(preparation);
     }
 
