@@ -27,7 +27,7 @@ public class ItemService {
         return ResponseEntity.ok(itemRepository.findAll());
     }
 
-    public ResponseEntity<Optional<Item>> fetchItemById(Long id) {
+    public ResponseEntity<Optional<Item>> fetchItemById(Integer id) {
         Optional<Item> item = itemRepository.findById(id);
         if (item.isPresent()) {
             return ResponseEntity.ok(item);
@@ -36,11 +36,11 @@ public class ItemService {
         }
     }
 
-    public Optional<Item> getItemObjectById(Long id) {
+    public Optional<Item> getItemObjectById(Integer id) {
         return itemRepository.findById(id);
     }
 
-    public ResponseEntity<Item> updateItem(Long id, Item item) {
+    public ResponseEntity<Item> updateItem(Integer id, Item item) {
         if (id == null) throw new IllegalArgumentException("ID cannot be null");
         Item itemToModify = itemRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(String.valueOf(id)));
@@ -50,7 +50,7 @@ public class ItemService {
         return ResponseEntity.ok(itemModified);
     }
 
-    public ResponseEntity<String> deleteItem(Long id) {
+    public ResponseEntity<String> deleteItem(Integer id) {
         itemRepository.deleteById(id);
         return ResponseEntity.ok("Item Deleted Successfully");
     }

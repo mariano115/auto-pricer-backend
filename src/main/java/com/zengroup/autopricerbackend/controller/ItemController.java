@@ -27,17 +27,17 @@ public class ItemController {
     }
 
     @GetMapping("/items/{id}")
-    public ResponseEntity<Optional<Item>> getProductById(@PathVariable Long id){
+    public ResponseEntity<Optional<Item>> getProductById(@PathVariable Integer id){
         return itemService.fetchItemById(id);
     }
 
     @PutMapping("/items/{id}")
-    public ResponseEntity<Item> updateProduct(@PathVariable Long id, @RequestBody Item item){
+    public ResponseEntity<Item> updateProduct(@PathVariable Integer id, @RequestBody Item item){
         return itemService.updateItem(id, item);
     }
 
     @DeleteMapping("/items/{id}")
-    public ResponseEntity<String> deleteItem(@PathVariable Long id){
+    public ResponseEntity<String> deleteItem(@PathVariable Integer id){
         return itemService.deleteItem(id);
     }
 }

@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(nullable = false)
     private String description;
@@ -16,7 +16,7 @@ public class Item {
     @Column(nullable = false)
     private Double price;
 
-    public Long getId() { return id; }
+    public Integer getId() { return id; }
 
     public String getDescription() {
         return description;
