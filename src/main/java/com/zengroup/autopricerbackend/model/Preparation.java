@@ -10,7 +10,7 @@ public class Preparation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column
     private String name;
@@ -18,7 +18,8 @@ public class Preparation {
     @Column
     private String description;
 
-    @Column
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "preparation_id")
     private ArrayList<Item> itemList;
 
     public String getName() {

@@ -13,35 +13,35 @@ public class PreparationController {
     @Autowired
     private PreparationService preparationService;
 
-    @GetMapping
-    public ResponseEntity<Preparation> getPreparation(Long id){
-        return preparationService.getPreparation(id);
-    }
-
     @PostMapping
-    public ResponseEntity<Preparation> createPreparation(Preparation preparation){
+    public ResponseEntity<Preparation> createPreparation(Preparation preparation) {
         return preparationService.createPreparation(preparation);
     }
 
-    @PutMapping
-    public ResponseEntity<Preparation> updatePreparation(Long idPreparation, Preparation preparation){
-        return preparationService.updatePreparation(idPreparation, preparation);
+    @GetMapping("/preparations/{id}")
+    public ResponseEntity<Preparation> getPreparation(@PathVariable Integer id) {
+        return preparationService.getPreparation(id);
     }
 
-    @DeleteMapping
-    public ResponseEntity<String> deletePreparation(Long idPreparation){
-        return preparationService.deletePreparation(idPreparation);
+    @PutMapping("/preparations/{id}")
+    public ResponseEntity<Preparation> updatePreparation(@PathVariable Integer id, @RequestBody Preparation preparation) {
+        return preparationService.updatePreparation(id, preparation);
+    }
+
+    @DeleteMapping("/preparations/{id}")
+    public ResponseEntity<String> deletePreparation(@PathVariable Integer id) {
+        return preparationService.deletePreparation(id);
     }
 
 
-    @PostMapping
-    public ResponseEntity<Preparation> addItem(Long idPreparation, Long idItem, Double quantity){
-        return preparationService.addItem(idPreparation, idItem, quantity);
+    @PostMapping("/preparations/{id}")
+    public ResponseEntity<Preparation> addItem(@PathVariable Integer id, @RequestBody Integer idItem, Double quantity) {
+        return preparationService.addItem(id, idItem, quantity);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Preparation> deleteItem(Long idPreparation, Long idItem){
-        return preparationService.deleteItem(idPreparation, idItem);
+    @DeleteMapping("/preparation/{id}")
+    public ResponseEntity<Preparation> deleteItem(Integer id, Integer idItem) {
+        return preparationService.deleteItem(id, idItem);
     }
 
 

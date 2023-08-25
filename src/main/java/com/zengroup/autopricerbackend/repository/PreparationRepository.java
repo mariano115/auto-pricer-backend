@@ -5,4 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PreparationRepository extends JpaRepository<Preparation, Long> {}
+public interface PreparationRepository extends JpaRepository<Preparation, Integer> {}
