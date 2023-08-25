@@ -16,6 +16,14 @@ public class Item {
     @Column(nullable = false)
     private Double price;
 
+    @ManyToOne
+    @JoinColumn(name = "commerce_id")
+    private Commerce commerce;
+
+    @ManyToOne
+    @JoinColumn(name = "preparation_id")
+    private Preparation preparation;
+
     public Integer getId() { return id; }
 
     public String getDescription() {
@@ -33,4 +41,6 @@ public class Item {
     public void setPrice(Double price) {
         this.price = price;
     }
+
+    public Commerce getCommerce() { return commerce; }
 }
