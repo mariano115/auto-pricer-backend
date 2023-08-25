@@ -1,6 +1,7 @@
 package com.zengroup.autopricerbackend.service;
 
 import com.zengroup.autopricerbackend.model.Commerce;
+import com.zengroup.autopricerbackend.model.Preparation;
 import com.zengroup.autopricerbackend.repository.CommerceRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,8 @@ public class CommerceService {
         Commerce commerceToModify = commerceRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(String.valueOf(id)));
         commerceToModify.setName(commerce.getName());
-        commerceToModify.setPreparationList(commerce.getPreparationList());
-        commerceToModify.setItemList(commerce.getItemList());
+        commerceToModify.setPreparations(commerce.getPreparations());
+        commerceToModify.setItems(commerce.getItems());
         Commerce commerceModified = commerceRepository.save(commerceToModify);
         return ResponseEntity.ok(commerceModified);
     }
@@ -46,5 +47,11 @@ public class CommerceService {
     public ResponseEntity<String> deleteCommerce(Integer id) {
         commerceRepository.deleteById(id);
         return ResponseEntity.ok("Commerce Deleted Successfully");
+    }
+
+    public ResponseEntity<String> addPreparation(Integer id, Preparation preparation) {
+    }
+
+    public ResponseEntity<String> deletePreparation(Integer id, Integer preparationId) {
     }
 }

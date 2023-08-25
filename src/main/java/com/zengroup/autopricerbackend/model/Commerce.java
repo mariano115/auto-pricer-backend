@@ -2,7 +2,7 @@ package com.zengroup.autopricerbackend.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Commerce")
@@ -14,13 +14,11 @@ public class Commerce {
     @Column
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "commerce_id")
-    private ArrayList<Preparation> preparationList;
+    @OneToMany(mappedBy = "commerce")
+    private List<Preparation> preparations;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "commerce_id")
-    private ArrayList<Item> itemList;
+    @OneToMany(mappedBy = "commerce")
+    private List<Item> items;
 
     public Long getId() {
         return id;
@@ -34,19 +32,19 @@ public class Commerce {
         this.name = name;
     }
 
-    public ArrayList<Preparation> getPreparationList() {
-        return preparationList;
+    public List<Preparation> getPreparations() {
+        return preparations;
     }
 
-    public void setPreparationList(ArrayList<Preparation> preparationList) {
-        this.preparationList = preparationList;
+    public void setPreparations(List<Preparation> preparations) {
+        this.preparations = preparations;
     }
 
-    public ArrayList<Item> getItemList() {
-        return itemList;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setItemList(ArrayList<Item> itemList) {
-        this.itemList = itemList;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }

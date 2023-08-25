@@ -1,8 +1,10 @@
 package com.zengroup.autopricerbackend.controller;
 
 import com.zengroup.autopricerbackend.model.Commerce;
+import com.zengroup.autopricerbackend.model.Preparation;
 import com.zengroup.autopricerbackend.service.CommerceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -27,18 +29,28 @@ public class CommerceController {
         return commerceService.saveCommerce(commerce);
     }
 
-    @GetMapping(("/commerces/{id}"))
+    @GetMapping(("/{id}"))
     public ResponseEntity<Optional<Commerce>> fetchCommerceById(@PathVariable Integer id) {
         return commerceService.fetchCommerceById(id);
     }
 
-    @PutMapping("/commerces/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Commerce> updateCommerce(@PathVariable Integer id, @RequestBody Commerce commerce) {
         return commerceService.updateCommerce(id, commerce);
     }
 
-    @DeleteMapping("/commerces/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCommerce(@PathVariable Integer id) {
         return commerceService.deleteCommerce(id);
+    }
+
+    @PostMapping("/{id}")
+    public ResponseEntity<String> addPreparation(@PathVariable Integer id, @RequestBody Preparation preparation) {
+        return commerceService.addPreparation(id, preparation);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletePreparation(@PathVariable Integer id, @RequestBody Integer preparationId) {
+        return commerceService.deletePreparation(id, preparationId);
     }
 }
