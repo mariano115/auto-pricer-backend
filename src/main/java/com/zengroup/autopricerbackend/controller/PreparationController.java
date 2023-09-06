@@ -34,15 +34,15 @@ public class PreparationController {
     }
 
 
-    @PostMapping("/{id}")
-    public ResponseEntity<Preparation> addItem(@PathVariable Integer id, @RequestBody Integer idItem, Double quantity) {
-        return preparationService.addItem(id, idItem, quantity);
+    /*@PostMapping("/ingredient/{id}")
+    public ResponseEntity<Preparation> addIngredient(@PathVariable Integer id, @RequestBody Integer idIngredient, Double quantity) {
+        return preparationService.addIngredient(id, idIngredient, quantity);
     }
 
-    @DeleteMapping("/items/{id}")
-    public ResponseEntity<Preparation> deleteItem(Integer id, Integer idItem) {
-        return preparationService.deleteItem(id, idItem);
-    }
+    @DeleteMapping("/ingredient/{id}")
+    public ResponseEntity<Preparation> deleteIngredient(Integer id, Integer idIngredient) {
+        return preparationService.deleteIngredient(id, idIngredient);
+    }*/
 
 
 }

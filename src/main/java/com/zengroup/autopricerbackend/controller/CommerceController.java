@@ -1,12 +1,11 @@
 package com.zengroup.autopricerbackend.controller;
 
 import com.zengroup.autopricerbackend.model.Commerce;
+import com.zengroup.autopricerbackend.model.Ingredient;
 import com.zengroup.autopricerbackend.model.Preparation;
 import com.zengroup.autopricerbackend.service.CommerceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public class CommerceController {
 
     @GetMapping
     public ResponseEntity<List<Commerce>> fetchAllCommerce() {
-        return commerceService.fetchAllItems();
+        return commerceService.fetchAllCommerce();
     }
 
     @PostMapping
@@ -44,13 +43,23 @@ public class CommerceController {
         return commerceService.deleteCommerce(id);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/{id}/preparations")
     public ResponseEntity<String> addPreparation(@PathVariable Integer id, @RequestBody Preparation preparation) {
         return commerceService.addPreparation(id, preparation);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}/preparations")
     public ResponseEntity<String> deletePreparation(@PathVariable Integer id, @RequestBody Integer preparationId) {
         return commerceService.deletePreparation(id, preparationId);
+    }
+
+    @PostMapping("/{id}/ingredients")
+    public ResponseEntity<String> addIngredient(@PathVariable Integer id, @RequestBody Ingredient ingredient){
+        return commerceService.addIngredient(id, ingredient);
+    }
+
+    @DeleteMapping("/{id}/ingredients")
+    public ResponseEntity<String> deleteIngredient(@PathVariable Integer id, @RequestBody Integer idIngredient){
+        return commerceService.deleteIngredient(id, idIngredient);
     }
 }

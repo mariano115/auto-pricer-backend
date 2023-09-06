@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "Item")
-public class Item {
+@Table(name = "Ingredient")
+public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -14,17 +14,18 @@ public class Item {
     private String description;
 
     @Column(nullable = false)
+    private Double presentation;
+
+    @Column(nullable = false)
     private Double price;
 
     @ManyToOne
     @JoinColumn(name = "commerce_id")
     private Commerce commerce;
 
-    @ManyToOne
-    @JoinColumn(name = "preparation_id")
-    private Preparation preparation;
-
-    public Integer getId() { return id; }
+    public Integer getId() {
+        return id;
+    }
 
     public String getDescription() {
         return description;
@@ -34,6 +35,14 @@ public class Item {
         this.description = description;
     }
 
+    public Double getPresentation() {
+        return presentation;
+    }
+
+    public void setPresentation(Double presentation) {
+        this.presentation = presentation;
+    }
+
     public Double getPrice() {
         return price;
     }
@@ -41,6 +50,4 @@ public class Item {
     public void setPrice(Double price) {
         this.price = price;
     }
-
-    public Commerce getCommerce() { return commerce; }
 }

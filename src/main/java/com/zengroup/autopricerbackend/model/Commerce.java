@@ -9,7 +9,7 @@ import java.util.List;
 public class Commerce {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column
     private String name;
@@ -18,9 +18,13 @@ public class Commerce {
     private List<Preparation> preparations;
 
     @OneToMany(mappedBy = "commerce")
-    private List<Item> items;
+    private List<Ingredient> ingredients;
 
-    public Long getId() {
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public Integer getId() {
         return id;
     }
 
@@ -40,11 +44,11 @@ public class Commerce {
         this.preparations = preparations;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public List<Ingredient> getIngredients() {
+        return ingredients;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 }

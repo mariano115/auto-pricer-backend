@@ -2,7 +2,6 @@ package com.zengroup.autopricerbackend.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,11 +19,13 @@ public class Preparation {
     private String description;
 
     @OneToMany(mappedBy = "preparation")
-    private List<Item> items;
+    private List<IngredientAmount> ingredientAmounts;
 
     @ManyToOne
     @JoinColumn(name = "commerce_id")
     private Commerce commerce;
+
+    public Integer getId() { return id; }
 
     public String getName() {
         return name;
@@ -42,11 +43,11 @@ public class Preparation {
         this.description = description;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public List<IngredientAmount> getIngredientAmounts() {
+        return ingredientAmounts;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setIngredientAmounts(List<IngredientAmount> ingredientAmounts) {
+        this.ingredientAmounts = ingredientAmounts;
     }
 }
