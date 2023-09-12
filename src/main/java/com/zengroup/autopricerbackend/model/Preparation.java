@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Preparation")
+@Table(name = "Preparations")
 public class Preparation {
 
     @Id
@@ -22,7 +22,7 @@ public class Preparation {
     private List<IngredientAmount> ingredientAmounts;
 
     @ManyToOne
-    @JoinColumn(name = "commerce_id")
+    @JoinColumn(name = "commerce_id", nullable=false)
     private Commerce commerce;
 
     public Integer getId() { return id; }
@@ -49,5 +49,9 @@ public class Preparation {
 
     public void setIngredientAmounts(List<IngredientAmount> ingredientAmounts) {
         this.ingredientAmounts = ingredientAmounts;
+    }
+
+    public Commerce getCommerce() {
+        return commerce;
     }
 }

@@ -3,7 +3,7 @@ package com.zengroup.autopricerbackend.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "IngredientAmount")
+@Table(name = "IngredientAmounts")
 public class IngredientAmount {
 
     @Id
@@ -18,7 +18,7 @@ public class IngredientAmount {
     private Ingredient ingredient;
 
     @ManyToOne
-    @JoinColumn(name = "preparation_id")
+    @JoinColumn(name = "preparation_id", nullable=false)
     private Preparation preparation;
 
     public Integer getId() {

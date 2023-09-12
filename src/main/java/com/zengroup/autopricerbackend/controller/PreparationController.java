@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/preparations")
+@RequestMapping("/preparations")
 public class PreparationController {
 
     @Autowired

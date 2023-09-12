@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "Ingredient")
+@Table(name = "Ingredients")
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class Ingredient {
     private Double price;
 
     @ManyToOne
-    @JoinColumn(name = "commerce_id")
+    @JoinColumn(name = "commerce_id", nullable=false)
     private Commerce commerce;
 
     public Integer getId() {
